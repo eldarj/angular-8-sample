@@ -1,0 +1,82 @@
+<div class="person-form-wrapper">
+  <h2 class="mb-0">Add new person</h2>
+  <mat-divider class="mb-20"></mat-divider>
+  <form [formGroup]="personForm" [style.fontSize.px]="15" class="flex flex-direction-column" novalidate>
+
+    <div class="flex mb-2">
+      <mat-form-field appearance="fill" class="mr-2 flex-grow">
+        <mat-label>Person's name</mat-label>
+        <input matInput name="name" formControlName="name" #name>
+        <mat-hint>Not more than 30 characters long</mat-hint>
+        <mat-error *ngIf="hasError('name', 'required')">Name is required</mat-error>
+        <mat-error *ngIf="hasError('name', 'minlength')">Has to be longer than 2 characters</mat-error>
+        <mat-error *ngIf="hasError('name', 'maxlength')">Cannot be more than 30 characters</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="flex-grow">
+        <mat-label>Office</mat-label>
+        <mat-select formControlName="office" #office>
+          <mat-option>Select an office</mat-option>
+          <mat-option *ngFor="let office of data.offices" [value]="office.id">
+            {{office.name}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="hasError('office', 'required')">Please choose an office</mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <input matInput name="description" formControlName="description" #description>
+      <mat-hint>Not more than 150 characters long</mat-hint>
+      <mat-error *ngIf="hasError('name', 'minlength')">Has to be longer than 2 characters</mat-error>
+      <mat-error *ngIf="hasError('name', 'maxlength')">Cannot be more than 150 characters</mat-error>
+    </mat-form-field>
+
+
+    <div class="flex mb-2">
+      <div class="flex flex-direction-column flex-grow">
+        <input type="file" (change)="onProfileImgChange($event)" class="d-none" #inputFileImg/>
+        <div [ngStyle]="{'background-image': 'url('+ profileImgSrc +')'}" class="profileImgDiv {{profileImgClass}}"></div>
+      </div>
+    </div>
+
+    <div class="flex mb-2">
+      <div class="flex flex-direction-column flex-grow">
+        <input type="file" (change)="onProfileImgBigChange($event)" class="d-none" #inputFileImgBig/>
+        <div [ngStyle]="{'background-image': 'url('+ profileImgBigSrc +')'}" class="profileImgDiv {{profileImgBigClass}}"></div>
+      </div>
+    </div>
+
+    <mat-divider class="mt-20 mb-2"></mat-divider>
+    <div class="flex flex-direction-column">
+      <button mat-flat-button (click)="inputFileImg.click()">
+        <mat-icon>arrow_upward</mat-icon>
+        <span>Upload profile image</span>
+      </button>
+      <button mat-flat-button (click)="inputFileImgBig.click()" class="ml-2">
+        <mat-icon>arrow_upward</mat-icon>
+        <span>Upload profile background image</span>
+      </button>
+      <p class="text-center">Or...</p>
+      <button mat-flat-button (click)="triggerSnapshot()">
+        <mat-icon>camera_alt</mat-icon>
+        <span>Take a photo</span>
+      </button>
+      <div *ngIf="showWebcam">
+        <webcam [height]="500" [width]="500" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" [allowCameraSwitch]="false"></webcam>
+      </div>
+    </div>
+
+    <mat-divider class="mt-2 mb-1"></mat-divider>
+    <div class="dialog-form-actions flex justify-space-between">
+      <button mat-flat-button color="accent"
+              [disabled]="!personForm.valid"
+              (click)="submitForm(name.value, office.value, description.value)">
+        <span>Add</span>
+      </button>
+      <button mat-flat-button (click)="closeForm()">Cancel</button>
+    </div>
+
+  </form>
+</div>

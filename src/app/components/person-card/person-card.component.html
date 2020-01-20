@@ -1,0 +1,29 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="person-header-image"
+         [ngStyle]="{'background-image': 'url(' + personModel.profileImg + ')'}"></div>
+    <mat-card-title>{{ personModel.name }}</mat-card-title>
+    <mat-card-subtitle>Subtitle</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image src="{{personModel.profileImgBig}}">
+  <mat-card-content>
+    <p>{{ personModel.description }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="onLike()">
+      <img src="assets/svg/heart.svg" *ngIf="personModel.liked">
+      <img src="assets/svg/heart-dark.svg" *ngIf="!personModel.liked">
+    </button>
+    <div class="secondary-actions">
+      <button mat-button class="settings-btn settings-btn-sm " [matMenuTriggerFor]="officeOptions">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #officeOptions="matMenu">
+        <button mat-menu-item (click)="deletePerson(personModel.id)" class="flex align-items-center">
+          <mat-icon>delete_forever</mat-icon><span>Remove person</span>
+        </button>
+        <button mat-menu-item><mat-icon>share</mat-icon><span>Share</span></button>
+      </mat-menu>
+    </div>
+  </mat-card-actions>
+</mat-card>

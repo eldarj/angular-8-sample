@@ -1,0 +1,29 @@
+<div class="settings-pane">
+  <button mat-button class="settings-btn" [matMenuTriggerFor]="menu">
+    <mat-icon class="settings-icon">settings</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="openSettingsPane()">
+      <mat-icon>view_quilt</mat-icon>Change layout
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item (click)="displayAllPersons()">
+      <mat-icon>account_box</mat-icon>All persons
+    </button>
+    <button mat-menu-item (click)="displayLikedPersons()">
+      <mat-icon>thumb_up</mat-icon>Liked persons
+    </button>
+    <mat-divider></mat-divider>
+    <button mat-menu-item [matMenuTriggerFor]="addMenu">
+      <mat-icon>add_circle</mat-icon>Add more
+    </button>
+  </mat-menu>
+  <mat-menu #addMenu="matMenu">
+    <button mat-menu-item (click)="openAddOfficeDialog()">
+      <mat-icon>add</mat-icon>Add office
+    </button>
+    <button mat-menu-item (click)="openAddPersonDialog()">
+      <mat-icon>person_add</mat-icon>Add person
+    </button>
+  </mat-menu>
+</div>

@@ -1,0 +1,48 @@
+<div class="persons persons-{{layoutClass}}">
+  <!-- start of sections -->
+  <div class="infobip-bg">
+    <div class="white-bg border-shadow">
+      <h1 class="title">Hello.</h1>
+      <span class="sub-title">
+        Since 2006, our mission has been to create seamless mobile interactions between businesses and people.
+        An integral part of the A2P messaging evolution, Infobip is committed to creating solutions that just work.
+        We believe it’s what’s on the inside that counts, it’s why we built our A2P SMS platform from the ground up.
+        Our unique culture fuels continuous innovation at the platform’s core, allowing full control of security and
+        service quality down to the deepest interaction. Our 58 worldwide offices represent our vision of being
+        truly local, everywhere.
+      </span>
+    </div>
+  </div>
+  <!-- end of sections -->
+  <!-- start of persons -->
+  <div class="m-2 flex align-items-center justify-space-between">
+    <h2 class="pt-20">Persons</h2>
+    <app-settings-pane [setting]="setting"></app-settings-pane>
+  </div>
+  <mat-divider></mat-divider>
+  <ng-container *ngIf="(office$ | async) else loading">
+    <div class="m-2 p-1" *ngFor="let office of office$ | async">
+      <div class="m-2 grid-box-title-wrapper flex align-items-center">
+        <span class="grid-box-title flex align-items-center mr-2">{{ office.name }}</span>
+        <div class="settings-pane hidden">
+          <button mat-button class="settings-btn" [matMenuTriggerFor]="officeOptions">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #officeOptions="matMenu">
+            <button mat-menu-item (click)="deleteOffice(office.id)" class="flex align-items-center">
+              <mat-icon>delete_forever</mat-icon><span>Remove office</span>
+            </button>
+          </mat-menu>
+        </div>
+      </div>
+      <div class="grid-wrapper">
+        <div class="grid-box" *ngFor="let person of office.persons">
+          <app-person-card [personModel]="person"></app-person-card>
+        </div>
+        <p class="p-2" *ngIf="office.persons === null || office.persons.length <= 0">No persons in this office</p>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #loading>Loading...</ng-template>
+  <!-- end of persons -->
+</div>

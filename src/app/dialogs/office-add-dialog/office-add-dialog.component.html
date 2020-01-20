@@ -1,0 +1,25 @@
+<div class="office-form-wrapper">
+  <h2 class="mb-0">Add new office</h2>
+  <mat-divider class="mb-20"></mat-divider>
+  <form [formGroup]="officeForm" [style.fontSize.px]="15" novalidate>
+    <div class="flex">
+      <mat-form-field appearance="fill"  [color]="'primary'" class="flex-grow">
+        <mat-label>Office location name</mat-label>
+        <input matInput name="name" formControlName="name" #name>
+        <mat-hint>Not more than 30 characters long</mat-hint>
+        <mat-error *ngIf="hasError('name', 'required')">Location name is required</mat-error>
+        <mat-error *ngIf="hasError('name', 'minlength')">Has to be longer than 2 characters</mat-error>
+        <mat-error *ngIf="hasError('name', 'maxlength')">Cannot be more than 30 characters</mat-error>
+      </mat-form-field>
+    </div>
+    <mat-divider class="mt-20 mb-1"></mat-divider>
+    <div class="dialog-form-actions flex justify-space-between">
+      <button mat-flat-button color="accent"
+              [disabled]="!officeForm.valid"
+              (click)="submitForm(name.value)">
+        <span>Add</span>
+      </button>
+      <button mat-flat-button (click)="closeForm()">Cancel</button>
+    </div>
+  </form>
+</div>

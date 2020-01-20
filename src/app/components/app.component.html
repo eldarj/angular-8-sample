@@ -1,0 +1,36 @@
+<div class="main-nav-wrapper flex justify-content-center box-shadow">
+  <div class="main-nav-inner flex align-items-center justify-space-between flex-grow">
+    <div class="cursor flex align-items-center" (click)="drawer.toggle()">
+      <img class="brand-logo" width="35" alt="Angular Logo" src="./assets/img/infobip-cropped.png">
+      <span class="ml-2 bold">{{ title }}</span>
+    </div>
+    <app-main-nav-bar></app-main-nav-bar>
+  </div>
+</div>
+<div class="flex flex-direction-column justify-content-center m-auto">
+  <mat-drawer-container class="example-container">
+    <mat-drawer #drawer mode='side' class="drawer-sidenav">
+      <button mat-button (click)="drawer.toggle()" class="flex justify-content-end">
+        <mat-icon>clear</mat-icon>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>dialpad</mat-icon><span>Dial</span>
+      </button>
+      <button mat-menu-item disabled>
+        <mat-icon>voicemail</mat-icon><span>Check voice mail</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>notifications_off</mat-icon><span>Disable alerts</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>chat</mat-icon><span>Chat</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>textsms</mat-icon><span>SMS</span>
+      </button>
+    </mat-drawer>
+    <!-- Sidenav Content -->
+<!--    <app-home class="app-home"></app-home>-->
+  </mat-drawer-container>
+</div>
+<router-outlet></router-outlet>

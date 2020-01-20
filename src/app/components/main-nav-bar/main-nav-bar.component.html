@@ -1,0 +1,32 @@
+<button mat-button>Join</button>
+<button mat-button [matMenuTriggerFor]="aboutmenu">About Us</button>
+<mat-menu #aboutmenu="matMenu">
+  <button mat-menu-item>What we do</button>
+  <button mat-menu-item>Learn more</button>
+</mat-menu>
+<button mat-button>Products</button>
+<button mat-button>Platform</button>
+<button mat-button>Documentation</button>
+<button mat-icon-button [matMenuTriggerFor]="dotmenu" aria-label="Example icon-button with a menu">
+  <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu #dotmenu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>dashboard</mat-icon><span>Dashboard</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>dialpad</mat-icon><span>Dial</span>
+  </button>
+  <button mat-menu-item disabled>
+    <mat-icon>voicemail</mat-icon><span>Check voice mail</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>notifications_off</mat-icon><span>Disable alerts</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>chat</mat-icon><span>Chat</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>textsms</mat-icon><span>SMS</span>
+  </button>
+</mat-menu>

@@ -1,0 +1,83 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~@angular/material/theming';
+
+$custom-typography: mat-typography-config(
+  $font-family: 'Roboto, monospace',
+  $headline: mat-typography-level(36px, 48px, 500),
+  $body-1: mat-typography-level(16px, 24px, 300)
+);
+
+$md-mcgpalette0: (
+  50 : #fdece4,
+  100 : #fbcebd,
+  200 : #f8ae91,
+  300 : #f58e64,
+  400 : #f37543,
+  500 : #f15d22,
+  600 : #ef551e,
+  700 : #ed4b19,
+  800 : #eb4114,
+  900 : #e7300c,
+  A100 : #ffffff,
+  A200 : #ffe2de,
+  A400 : #ffb6ab,
+  A700 : #ffa091,
+  contrast: (
+    50 : #333333,
+    100 : #333333,
+    200 : #333333,
+    300 : #333333,
+    400 : #333333,
+    500 : #333333,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #333333,
+    A200 : #333333,
+    A400 : #333333,
+    A700 : #333333,
+  )
+);
+$md-mcgpalette1: (
+  50 : #fef4e5,
+  100 : #fde5be,
+  200 : #fcd392,
+  300 : #fac166,
+  400 : #f9b446,
+  500 : #f8a725,
+  600 : #f79f21,
+  700 : #f6961b,
+  800 : #f58c16,
+  900 : #f37c0d,
+  A100 : #ffffff,
+  A200 : #fff4eb,
+  A400 : #ffd7b8,
+  A700 : #ffc99e,
+  contrast: (
+    50 : #333333,
+    100 : #333333,
+    200 : #333333,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #333333,
+    A200 : #333333,
+    A400 : #333333,
+    A700 : #333333,
+  )
+);
+
+$primary: mat-palette($md-mcgpalette0);
+$accent: mat-palette($md-mcgpalette1);
+$theme: mat-light-theme($primary, $accent);
+
+@include mat-base-typography($custom-typography);
+@include mat-checkbox-typography($custom-typography);
+@include angular-material-typography($custom-typography);
+@include angular-material-theme($theme);
+@include mat-core($custom-typography);

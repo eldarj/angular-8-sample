@@ -1,0 +1,5 @@
+<mat-nav-list>
+  <a mat-list-item *ngFor="let option of data.options" (click)="option.onClick()">
+    <span class="flex"><mat-icon class="mr-1">{{ option.icon }}</mat-icon>{{ option.text }}</span>
+  </a>
+</mat-nav-list>
